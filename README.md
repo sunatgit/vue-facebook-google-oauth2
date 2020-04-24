@@ -60,7 +60,7 @@ The final application would look like this. Now you can extend this
 component further to suit your application needs.
 
 
-![](https://ssvmcljjmjodcc7ta.westus2.cloudapp.azure.com:9443/wp-content/uploads/2020/04/vue-google-auth-300x255.png)
+![](https://ssvmcljjmjodcc7ta.westus2.cloudapp.azure.com:9443/wp-content/uploads/2020/04/vue-google-auth2-300x252.png)
 
 ## Project setup
 ```
