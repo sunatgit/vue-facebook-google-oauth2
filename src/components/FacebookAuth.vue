@@ -68,7 +68,39 @@ export default {
         });
       })};
       await logoutPromise();
-    }
+    },
+
+    async getStatus() {
+      const statusPromise = () => {
+        return new Promise((resolve, reject) => {
+          window.FB.getLoginStatus(function (response) {
+            if (response) {
+              console.log(response);
+              resolve(response);
+            } else {
+              reject("can't get login status");
+            }
+          });
+        })
+      }
+      return await statusPromise();
+    },
+
+    async getProfile() {
+      const profilePromise = () => {
+        return new Promise((resolve, reject) => {
+          window.FB.api("/me?fields=name,email", function (response) {
+            if (response) {
+              console.log(response);
+              resolve(response);
+            } else {
+              reject("can't get profile");
+            }
+          });
+        })
+      }
+      return await profilePromise();
+    },
   }
 };
 </script>

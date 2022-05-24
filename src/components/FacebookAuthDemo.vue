@@ -7,11 +7,33 @@
         @authInitialized="authInitialized"
         ref="authRef"
       />
-      <a v-if="accessToken" href="#" v-on:click="logout()">Logout</a>
-      <a v-else href="#" v-on:click="login">Log In</a>
+
+      <div>
+        <a v-if="accessToken" href="#" v-on:click="logout()">Logout</a>
+        <a v-else href="#" v-on:click="login">Log In</a>
+      </div>
+
+      <div>
+        <a v-if="accessToken" href="#" v-on:click="getStatus()">Get status</a>
+      </div>
+
+      <div>
+        <a v-if="accessToken" href="#" v-on:click="getProfile()">Get profile</a>
+      </div>
+
       <div v-if="accessToken">
-        <h3>Access token</h3>
+        <h3>Access token: </h3>
         <p>{{ accessToken }}</p>
+      </div>
+
+      <div v-if="status">
+        <h3>Status: </h3>
+        <p>{{ status }}</p>
+      </div>
+
+      <div v-if="profile">
+        <h3>Profile: </h3>
+        <p>{{ profile }}</p>
       </div>
     </div>
   </div>
@@ -25,7 +47,9 @@ export default {
   data: function() {
     return {
       initialized: false,
-      accessToken: null
+      accessToken: null,
+      status: null,
+      profile: null,
     };
   },
   methods: {
@@ -36,8 +60,14 @@ export default {
       this.accessToken = await this.$refs.authRef.login();
     },
     async logout() {
-      this.$refs.authRef.logout();
+      await this.$refs.authRef.logout();
       this.accessToken = null;
+    },
+    async getStatus() {
+      this.status = await this.$refs.authRef.getStatus();
+    },
+    async getProfile() {
+      this.profile = await this.$refs.authRef.getProfile();
     }
   }
 };
